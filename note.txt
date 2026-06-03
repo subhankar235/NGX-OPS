@@ -1,0 +1,25 @@
+Your code changes
+       ↓
+GitHub checks:
+✓ Dependencies install?
+✓ Lint passes?
+✓ Tests pass?
+✓ Docker builds?
+
+
+
+CD (Continuous Deployment)
+
+After CI succeeds:
+
+Code verified ✅
+      ↓
+Deploy to server
+      ↓
+Update application
+      ↓
+Restart containers.
+
+
+
+ci/cd can be without docker also with it also 
