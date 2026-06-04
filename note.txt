@@ -23,3 +23,34 @@ Restart containers.
 
 
 ci/cd can be without docker also with it also 
+
+
+
+
+
+
+.kubernetes---when we have mnay conatiner we have to use kubernetes coz only conatiner is not enough-
+Cluster = Entire Kubernetes system
+
+Worker Node = Server
+
+Pod = Smallest deployable unit
+
+Container = Application
+
+Deployment = Maintains desired number of Pods
+
+Service = Exposes Pods to users
+
+Control Plane = Brain of Kubernetes
+
+
+**
+Kubernetes
+     ↓
+Create Pods
+Monitor Pods
+Restart Pods
+Scale Pods
+Update Pods
+Route Traffic
