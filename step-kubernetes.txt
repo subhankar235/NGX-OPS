@@ -157,6 +157,7 @@ Command:
 
 kubectl expose deployment frontend --name=frontend-svc --port=80 --target-port=5173 --type=NodePort
 
+Your browser cannot directly access the Pod.that why we run this command
 What it does:
 
 Browser
