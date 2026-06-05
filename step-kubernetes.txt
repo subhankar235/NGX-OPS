@@ -1,0 +1,244 @@
+Kubernetes Setup (Short Notes)
+1. Open PowerShell as Administrator
+
+Search PowerShell → Run as Administrator
+
+2. Install kubectl
+choco install kubernetes-cli -y
+
+Check:
+
+kubectl version --client
+3. Install Minikube
+choco install minikube -y
+
+Check:
+
+minikube version
+4. Start Docker Desktop
+
+Verify:
+
+docker ps
+
+If it shows containers or an empty table, Docker is running.
+
+5. Start Kubernetes Cluster
+minikube start --driver=docker
+
+Success message:
+
+Done! kubectl is now configured to use "minikube" cluster
+6. Verify Cluster
+kubectl get nodes
+
+Expected:
+
+NAME       STATUS   ROLES
+minikube   Ready    control-plane
+7. Check System Pods
+kubectl get pods -A
+
+
+
+
+
+
+after installing--
+================================================== STEP 1: Load Docker Images into Minikube
+
+KUBERNETES + MINIKUBE WORKFLOW (MERN PROJECT)
+
+Command:
+
+minikube image load mern-backend
+minikube image load mern-frontend
+
+What it does:
+
+Docker Images
+↓
+Minikube Storage
+
+The images become available inside Minikube.
+
+Important:
+Nothing is running yet.
+Only the images are copied into Minikube.
+
+Think:
+Downloading an app installer but not opening it.
+
+Command:
+
+kubectl create deployment backend --image=mern-backend
+
+What it does:
+
+Deployment
+↓
+Pod
+↓
+Backend Container
+
+Kubernetes starts the backend container.
+
+Deployment:
+A manager that ensures your app keeps running.
+
+If a Pod crashes:
+
+Pod ❌
+
+Deployment automatically creates:
+
+New Pod ✅
+
+So Deployment = Self-healing manager.
+
+Command:
+
+kubectl set env deployment/backend MONGO_URI="YOUR_MONGO_URI"
+
+What it does:
+
+Kubernetes
+↓
+Environment Variable
+↓
+Backend Container
+
+Backend reads:
+
+process.env.MONGO_URI
+
+and connects to MongoDB.
+
+Check Pods:
+
+kubectl get pods
+
+Purpose:
+
+Verify backend is running.
+
+Expected:
+
+STATUS = Running
+
+Check Logs:
+
+kubectl logs deploy/backend
+
+Purpose:
+
+See backend console output.
+
+Example:
+
+Connected to MongoDB
+Server is running on port 5000
+
+Command:
+
+kubectl create deployment frontend --image=mern-frontend
+
+What it does:
+
+Deployment
+↓
+Pod
+↓
+Frontend Container
+
+React frontend starts running inside Kubernetes.
+
+Command:
+
+kubectl expose deployment frontend --name=frontend-svc --port=80 --target-port=5173 --type=NodePort
+
+What it does:
+
+Browser
+↓
+Service
+↓
+Frontend Pod
+
+Creates a Kubernetes Service named:
+
+frontend-svc
+
+Service acts as a bridge between users and Pods.
+
+Command:
+
+minikube service frontend-svc
+
+What it does:
+
+Finds the service URL and opens it in your browser.
+
+Browser
+↓
+frontend-svc
+↓
+Frontend Pod
+
+Docker Image
+↓
+Load into Minikube
+↓
+Create Deployment
+↓
+Create Pod
+↓
+Run Container
+↓
+Create Service
+↓
+Open in Browser
+
+Check Nodes:
+
+kubectl get nodes
+
+Check Pods:
+
+kubectl get pods
+
+Check Deployments:
+
+kubectl get deployments
+
+Check Services:
+
+kubectl get services
+
+Check Logs:
+
+kubectl logs deploy/backend
+
+Stop Minikube:
+
+minikube stop
+
+Start Minikube:
+
+minikube start --driver=docker
+
+MongoDB Atlas
+↑
+|
+Backend Pod
+↑
+|
+Frontend Pod
+↑
+|
+frontend-svc
+↑
+|
+Browser
+
+This is how your MERN application runs on Kubernetes.
