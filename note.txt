@@ -34,15 +34,37 @@ Cluster = Entire Kubernetes system
 
 Worker Node = Server
 
-Pod = Smallest deployable unit
+Pod = Smallest deployable unit-which is goning to contain the container,
 
 Container = Application
 
+
+Deployment = Creates and manages Pods
+
+Service = Sends traffic to Pods
+
 Deployment = Maintains desired number of Pods
 
-Service = Exposes Pods to users
+Service = Exposes Pods to users,
+
 
 Control Plane = Brain of Kubernetes
+ow who actually creates those 3 pods?
+
+Not the Deployment.
+
+The Control Plane reads the Deployment and does the work.
+Deployment
+    ↓
+"I want 3 pods"
+
+Control Plane
+    ↓
+"Okay"
+    ↓
+Create Pod1
+Create Pod2
+Create Pod3
 
 
 **
